@@ -91,12 +91,12 @@ components:
     UserCredential:
       type: object
       properties:
-        username:
+        email:
           type: string
-          example: test123
+          example: test@test.com
         password:
           type: string
           example: 123Abc!321
       required:
-        - username
+        - email
         - password

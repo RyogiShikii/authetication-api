@@ -27,16 +27,11 @@ export const userRegisterSchema = [
   ];
   
   export const userLoginSchema = [
-      body('username')
-        .exists({checkFalsy: true})
-        .bail()
+      body('email')
         .trim()
-        .isLength({min: 5})
-        .withMessage('username must be at least 5 characters long')
-        .bail()
-        .isLength({max: 32})
-        .withMessage('username must be at most 32 characters long')
-        .bail(),
+        .isEmail()
+        .normalizeEmail()
+        .withMessage('email must contain a valid email address'),
       body('password')
         .trim()
         .isStrongPassword()

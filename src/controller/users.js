@@ -4,14 +4,14 @@ import bcrypt from 'bcryptjs';
 export const registerController = async (req,res) => {
     try {
         const { username, email, password } = req.body;
-        //check if username has been used
+        //check if email has been used
         const existedUser = await userRepository
           .search()
-          .where('username')
-          .equals(username)
+          .where('email')
+          .equals(email)
           .return.all();
         if (existedUser[0]) {
-          return res.status(400).send({ info: 'This username has been used' });
+          return res.status(400).send({ info: 'This email has been used' });
         }
     
         //regiser new user
@@ -32,13 +32,13 @@ export const registerController = async (req,res) => {
 
 export const loginController = async (req,res) => {
     try {
-        const { username, password } = req.body;
+        const { email, password } = req.body;
     
         //check if email exists
         const existedUser = await userRepository
           .search()
-          .where('username')
-          .equals(username)
+          .where('email')
+          .equals(email)
           .return.all();
 
         //check if passowrd is correct
@@ -48,7 +48,7 @@ export const loginController = async (req,res) => {
         );
 
         if (!validPassword || !existedUser[0]) {
-          return res.status(401).send({ info: 'Invalid username or password' });
+          return res.status(401).send({ info: 'Invalid email or password' });
         }
 
         console.log(existedUser)
