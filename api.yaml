@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  title: Authetication API
+  description: >
+    A simple API that accepts new user registration and login by using Redis OM for
+    Node.js with an Express applciation.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /user/register:
+    post:
+      tags:
+        - Register User
+      description: Create a new user
+      summary: Create user
+      operationId: createUser
+      requestBody:
+        description: user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/schemas/User'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+                    example: Register succeeded
+                  user:
+                    type: string
+
+
+  /user/login:
+    post:
+      tags:
+        - Login User
+      description: Login wit a user
+      summary: Login user
+      operationId: loginUser
+      requestBody:
+        description: user login
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/schemas/UserCredential'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+                    example: login succeeded
+                  user:
+                    type: string
+                    example: test123
+      
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+          example: test123
+        email:
+          type: string
+          example: test@test.com
+        password:
+          type: string
+          example: 123Abc!321
+      required:  
+        - username
+        - email
+        - password
+    
+    UserCredential:
+      type: object
+      properties:
+        email:
+          type: string
+          example: test@test.com
+        password:
+          type: string
+          example: 123Abc!321
+      required:
+        - email
+        - password

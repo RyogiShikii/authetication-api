@@ -1,0 +1,31 @@
+{
+  "name": "simple-authetication",
+  "version": "1.0.0",
+  "description": "Service for user registration and login with Redis",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server.js",
+    "prepare": "husky install"
+  },
+  "author": "Daniel Guo",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "nodemon": "^2.0.15",
+    "prettier": "2.7.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-validator": "^6.14.2",
+    "redis": "^4.0.4",
+    "redis-om": "^0.2.0",
+    "swagger-ui-express": "^4.3.0",
+    "yamljs": "^0.3.0"
+  }
+}
